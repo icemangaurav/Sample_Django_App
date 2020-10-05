@@ -11,9 +11,12 @@ node {
             
 
         stage 'Test'
-            sh 'virtualenv env -p python3.7'
-            sh '. env/bin/activate'
-            sh 'env/bin/pip install -r requirements.txt'
+            sh '''
+            python3 -m pip install --user --upgrade pip
+            python3 -m pip install --user virtualenv
+            virtualenv env -p python3.7
+            . env/bin/activate
+            env/bin/pip install -r requirements.txt'''
             
 
         stage 'Deploy'
